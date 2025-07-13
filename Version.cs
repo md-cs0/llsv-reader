@@ -1,6 +1,6 @@
 namespace LLSVReader;
 
-public class Version
+public static class Version
 {
     public static int Major { get; } = 1;
     public static int Minor { get; } = 0;

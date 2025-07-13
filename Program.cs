@@ -1,4 +1,6 @@
-﻿namespace LLSVReader;
+﻿using Classic.CommonControls;
+
+namespace LLSVReader;
 
 sealed class Program
 {
@@ -14,5 +16,6 @@ sealed class Program
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
-            .LogToTrace();
+            .LogToTrace()
+            .UseMessageBoxSounds();
 }

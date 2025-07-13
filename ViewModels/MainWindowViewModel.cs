@@ -1,20 +1,28 @@
-﻿using LLSVReader.Views;
+﻿using Classic.CommonControls.Dialogs;
+using CommunityToolkit.Mvvm.ComponentModel;
+using LLSVReader.Views;
 
 namespace LLSVReader.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    // Is a file currently open?
-    public bool FileOpen { get; private set; } = false;
+    // Is a save currently open?
+    [ObservableProperty] // The WPF in me is pleading in joy.
+    private LLSV? _save;
 
     // Open a new save file.
     public void CommandOpen()
     {
+        Window? window = ((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow; // Yeah.
+        Save = LLSV.Open("dev/newdev.sav");
+        MessageBox.ShowDialog(window, $"{Save != null} {((Save != null) ? Save.ErrorState : -1)}", "test", MessageBoxButtons.Ok, MessageBoxIcon.Information);
     }
 
     // Close a loaded save file, if loaded.
     public void CommandClose()
     {
+        Save?.Close();
+        Save = null;
     }
 
     // Exit.

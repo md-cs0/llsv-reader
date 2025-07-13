@@ -21,13 +21,13 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_Open" Command="{Binding CommandOpen}"/>
                 <MenuItem Header="_Close" 
-                          IsEnabled="{Binding FileOpen}" 
+                          IsEnabled="{Binding Save, TargetNullValue=False}" 
                           Command="{Binding CommandClose}"/>
                 <Separator/>
                 <MenuItem Header="_Exit" Command="{Binding CommandExit}"/>
             </MenuItem>
             <MenuItem Header="_Help">
-                <MenuItem Header="About" 
+                <MenuItem Header="_About" 
                           Command="{Binding CommandAbout}" 
                           CommandParameter="{Binding $parent[Window]}"/>
             </MenuItem>
