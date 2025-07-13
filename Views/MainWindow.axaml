@@ -5,11 +5,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" 
-        d:DesignWidth="500" 
-        d:DesignHeight="350"
         x:Class="LLSVReader.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Title="LLSVReader">
+        Title="LLSVReader"
+        Icon="/Assets/freeman.png">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -21,13 +20,20 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Header="_Open" Command="{Binding CommandOpen}"/>
-                <MenuItem Header="_Close" IsEnabled="{Binding FileOpen}" Command="{Binding CommandClose}"/>
+                <MenuItem Header="_Close" 
+                          IsEnabled="{Binding FileOpen}" 
+                          Command="{Binding CommandClose}"/>
                 <Separator/>
                 <MenuItem Header="_Exit" Command="{Binding CommandExit}"/>
             </MenuItem>
             <MenuItem Header="_Help">
-                <MenuItem Header="About" Command="{Binding CommandAbout}"/>
+                <MenuItem Header="About" 
+                          Command="{Binding CommandAbout}" 
+                          CommandParameter="{Binding $parent[Window]}"/>
             </MenuItem>
         </Menu>
+        <Grid ColumnDefinitions="*" RowDefinitions="*">
+           <TextBlock>Hello world!</TextBlock>
+        </Grid>
     </DockPanel>
 </Window>

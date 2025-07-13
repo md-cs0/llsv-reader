@@ -1,15 +1,11 @@
-﻿using System.Runtime.InteropServices;
+﻿using LLSVReader.Views;
 
 namespace LLSVReader.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    // Used for testing.
-    [DllImport("user32.dll", CharSet = CharSet.Unicode)]
-    private static extern int MessageBoxW(IntPtr hWnd, string lpText, string lpCaption, uint uType);
-
     // Is a file currently open?
-    public bool FileOpen { get; set; } = false;
+    public bool FileOpen { get; private set; } = false;
 
     // Open a new save file.
     public void CommandOpen()
@@ -28,8 +24,10 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
     // Launch the about dialogue.
-    public void CommandAbout()
+    public void CommandAbout(MainWindow window)
     {
-        MessageBoxW(IntPtr.Zero, "Lost Levels Save File (LLSV) reader", "About LLSVReader", 0);
+        var dialogue = new About();
+        dialogue.DataContext = new AboutViewModel();
+        dialogue.ShowDialog(window);
     }
 }

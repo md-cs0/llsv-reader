@@ -1,0 +1,24 @@
+<Window Width="400" Height="150" CanResize="False"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:LLSVReader.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="LLSVReader.Views.About"
+        x:DataType="vm:AboutViewModel"
+        Title="About LLSVReader"
+        Icon="/Assets/freeman.png">
+
+    <Design.DataContext>
+        <vm:AboutViewModel/>
+    </Design.DataContext>
+    
+    <Grid ColumnDefinitions="20,50,20,*,75,20" RowDefinitions="20,50,*,25,20">
+        <Image Grid.Column="1" Grid.Row="1" Source="/Assets/freeman.png"/>
+        <TextBlock Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" 
+                   Text="{Binding VersionText}" TextWrapping="Wrap"/>
+        <Button Grid.Column="4" Grid.Row="3" Content="OK" Command="{Binding CommandOK}"
+                CommandParameter="{Binding $parent[Window]}"/>
+    </Grid>
+</Window>
