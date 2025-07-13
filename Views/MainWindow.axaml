@@ -19,12 +19,17 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="_Open" Command="{Binding CommandOpen}"/>
+                <MenuItem Header="_Open" 
+                          Command="{Binding CommandOpen}"
+                          CommandParameter="{Binding $parent[Window]}"/>
                 <MenuItem Header="_Close" 
                           IsEnabled="{Binding Save, TargetNullValue=False}" 
-                          Command="{Binding CommandClose}"/>
+                          Command="{Binding CommandClose}"
+                          CommandParameter="{Binding $parent[Window]}"/>
                 <Separator/>
-                <MenuItem Header="_Exit" Command="{Binding CommandExit}"/>
+                <MenuItem Header="_Exit" 
+                          Command="{Binding CommandExit}"
+                          CommandParameter="{Binding $parent[Window]}"/>
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="_About" 

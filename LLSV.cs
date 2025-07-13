@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace LLSVReader;
 
 // Error states.
@@ -97,7 +99,7 @@ public sealed class LLSV
         {
             _stream = File.Open(path, FileMode.Open, FileAccess.ReadWrite)
         };
-        using var reader = new BinaryReader(save._stream);
+        using var reader = new BinaryReader(save._stream, Encoding.UTF8, true);
 
         // If the file size is too small, the header cannot be read fully.
         if (save._stream.Length < LLSVHeader.SizeOfHeader)
@@ -147,7 +149,7 @@ public sealed class LLSV
             return;
         if (Header == null)
             return;
-        using var writer = new BinaryWriter(_stream);
+        using var writer = new BinaryWriter(_stream, Encoding.UTF8, true);
 
         // Clear the save file.
         _stream.SetLength(0);
@@ -161,6 +163,9 @@ public sealed class LLSV
         writer.Write(Header.Score);
         writer.Write(Header.Powerup);
         writer.Write(Header.NumWorlds);
+
+        // Skip padding.
+        writer.Write((short)0);
 
         // Write the current level array.
         writer.Write(CurrentLevel.ToArray());
