@@ -1,7 +1,4 @@
-﻿using Avalonia;
-using System;
-
-namespace LLSVReader;
+﻿namespace LLSVReader;
 
 sealed class Program
 {

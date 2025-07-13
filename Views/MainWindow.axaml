@@ -1,12 +1,14 @@
-<Window xmlns="https://github.com/avaloniaui"
+<Window MinWidth="320" MinHeight="320" Width="320" Height="320"
+        xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:LLSVReader.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" 
+        d:DesignWidth="500" 
+        d:DesignHeight="350"
         x:Class="LLSVReader.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
         Title="LLSVReader">
 
     <Design.DataContext>
@@ -15,6 +17,17 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open" Command="{Binding CommandOpen}"/>
+                <MenuItem Header="_Close" IsEnabled="{Binding FileOpen}" Command="{Binding CommandClose}"/>
+                <Separator/>
+                <MenuItem Header="_Exit" Command="{Binding CommandExit}"/>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="About" Command="{Binding CommandAbout}"/>
+            </MenuItem>
+        </Menu>
+    </DockPanel>
 </Window>
